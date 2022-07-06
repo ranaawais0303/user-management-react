@@ -102,8 +102,8 @@ const AddUser = (props) => {
           {emailHasError && <p className="error-text">Email is not Valid</p>}
         </div>
         <div className="form-actions">
-          <button disabled={!formIsValid}>Submit</button>
-          <button disabled={!formIsValid}>Submit</button>
+          <button disabled={!formIsValid}>Add User</button>
+          <button onClick={props.onClose}>Cancel</button>
         </div>
       </form>
     </Modal>

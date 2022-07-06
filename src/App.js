@@ -8,14 +8,19 @@ const data = [
   { name: "Subham", age: 25, gender: "Male" },
 ];
 function App() {
-  function hideUserModelHandler() {}
+  const [showform, setShowForm] = useState(false);
+  function hideUserModelHandler() {
+    setShowForm(false);
+  }
+  function showUserModelHandler() {
+    setShowForm(true);
+  }
   return (
     <div className="container">
       {/* <div className="app">User Management</div> */}
       <Header />
-
-      <button>Add</button>
-      <AddUser onClose={hideUserModelHandler} />
+      <button onClick={showUserModelHandler}>Add</button>
+      {showform && <AddUser onClose={hideUserModelHandler} />}
       <UsersList data={data} />
     </div>
   );
