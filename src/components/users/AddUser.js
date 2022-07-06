@@ -7,22 +7,22 @@ const AddUser = (props) => {
   const isEmail = (value) => value.includes("@");
   //for first name
   const {
-    value: firstNameValue,
-    isValid: firstNameIsValid,
-    hasError: fNameHasError,
-    valueChangeHandler: fNameChangeHandler,
-    valueBlurHandler: fNameBlurHandler,
-    reset: fNameReset,
+    value: name,
+    isValid: nameIsValid,
+    hasError: nameHasError,
+    valueChangeHandler: nameChangeHandler,
+    valueBlurHandler: nameBlurHandler,
+    reset: nameReset,
   } = useInput(isEmpty);
 
   //for last name
   const {
-    value: lastNameValue,
-    isValid: lastNameIsValid,
-    hasError: lNameHasError,
-    valueChangeHandler: lNameChangeHandler,
-    valueBlurHandler: lNameBlurHandler,
-    reset: lNameReset,
+    value: position,
+    isValid: positionIsValid,
+    hasError: positionHasError,
+    valueChangeHandler: positionChangeHandler,
+    valueBlurHandler: postionBlurHandler,
+    reset: positionReset,
   } = useInput(isEmpty);
 
   //for email
@@ -36,7 +36,7 @@ const AddUser = (props) => {
   } = useInput(isEmail);
 
   let formIsValid = false;
-  if (firstNameIsValid && lastNameIsValid && emailIsValid) {
+  if (nameIsValid && positionIsValid && emailIsValid) {
     formIsValid = true;
   }
   const formSubmissionHandler = (e) => {
@@ -44,15 +44,16 @@ const AddUser = (props) => {
     if (!formIsValid) {
       return;
     }
-    fNameReset();
-    lNameReset();
+    props.onAddUser(name, position, emailValue);
+    nameReset();
+    positionReset();
     emailReset();
   };
   //set style according to conditions
-  const fnameInputClasses = fNameHasError
+  const fnameInputClasses = nameHasError
     ? "form-control invalid"
     : "form-control";
-  const lnameInputClasses = lNameHasError
+  const lnameInputClasses = positionHasError
     ? "form-control invalid"
     : "form-control";
   const emailInputClasses = emailHasError
@@ -64,29 +65,27 @@ const AddUser = (props) => {
       <form onSubmit={formSubmissionHandler}>
         <div className="control-group">
           <div className={fnameInputClasses}>
-            <label htmlFor="name">First Name</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               id="fname"
-              onChange={fNameChangeHandler}
-              onBlur={fNameBlurHandler}
-              value={firstNameValue}
+              onChange={nameChangeHandler}
+              onBlur={nameBlurHandler}
+              value={name}
             />
-            {fNameHasError && (
-              <p className="error-text">First Name is not Valid</p>
-            )}
+            {nameHasError && <p className="error-text">Name is not Valid</p>}
           </div>
           <div className={lnameInputClasses}>
-            <label htmlFor="name">Last Name</label>
+            <label htmlFor="name">Postion</label>
             <input
               type="text"
               id="lname"
-              onChange={lNameChangeHandler}
-              onBlur={lNameBlurHandler}
-              value={lastNameValue}
+              onChange={positionChangeHandler}
+              onBlur={postionBlurHandler}
+              value={position}
             />
-            {lNameHasError && (
-              <p className="error-text">Last Name is not Valid</p>
+            {positionHasError && (
+              <p className="error-text">Position is not Valid</p>
             )}
           </div>
         </div>

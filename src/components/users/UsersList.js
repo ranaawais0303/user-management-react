@@ -11,16 +11,16 @@ const UsersList = (props) => {
       <table>
         <tr>
           <th>Name</th>
-          <th>Age</th>
-          <th>Gender</th>
+          <th>Position</th>
+          <th>Email</th>
           <th colSpan={2}>Actions</th>
         </tr>
         {props.data.map((val) => {
           return (
             <tr key={val.id}>
               <td>{val.name}</td>
-              <td>{val.age}</td>
-              <td>{val.gender}</td>
+              <td>{val.position}</td>
+              <td>{val.email}</td>
               <td onClick={props.onEdit}>Edit</td>
               <td onClick={deleteUser.bind(null, val.id)}>Delete</td>
             </tr>

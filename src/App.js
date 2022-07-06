@@ -3,9 +3,9 @@ import Header from "./components/Header/Header";
 import AddUser from "./components/users/AddUser";
 import { useState } from "react";
 const data = [
-  { id: "1", name: "Anom", age: 19, gender: "Male" },
-  { id: "2", name: "Megha", age: 19, gender: "Female" },
-  { id: "3", name: "Subham", age: 25, gender: "Male" },
+  { id: "1", name: "Anom", position: "Junior SE", email: "rana@3" },
+  { id: "2", name: "Megha", position: "Junior SE", email: "ahmad@4" },
+  { id: "3", name: "Subham", position: "Junior SE", email: "shahzad@3" },
 ];
 function App() {
   const [users, setUsers] = useState(data);
@@ -23,6 +23,21 @@ function App() {
       return updatedUsers;
     });
   }
+  const addUserHandler = (fname, lname, email) => {
+    setUsers((prevUsersList) => {
+      return [
+        ...prevUsersList,
+        {
+          name: fname,
+          position: lname,
+          email: email,
+          id: Math.random().toString(),
+        },
+      ];
+    });
+    console.log(fname, lname, email);
+    setShowForm(false);
+  };
   function editHandler(id) {
     console.log("edit function");
   }
@@ -32,7 +47,13 @@ function App() {
       {/* <div className="app">User Management</div> */}
       <Header />
       <button onClick={showUserModelHandler}>Add</button>
-      {showform && <AddUser onClose={hideUserModelHandler} data={users} />}
+      {showform && (
+        <AddUser
+          onClose={hideUserModelHandler}
+          data={users}
+          onAddUser={addUserHandler}
+        />
+      )}
       <UsersList data={users} onDel={deleteHandler} onEdit={editHandler} />
     </div>
   );
