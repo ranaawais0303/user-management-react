@@ -3,6 +3,9 @@ import Card from "../UI/Card";
 import classes from "./UsersList.module.css";
 
 const UsersList = (props) => {
+  function deleteUser(id) {
+    props.onDel(id);
+  }
   return (
     <Card>
       <table>
@@ -12,14 +15,14 @@ const UsersList = (props) => {
           <th>Gender</th>
           <th colSpan={2}>Actions</th>
         </tr>
-        {props.data.map((val, key) => {
+        {props.data.map((val) => {
           return (
-            <tr key={key}>
+            <tr key={val.id}>
               <td>{val.name}</td>
               <td>{val.age}</td>
               <td>{val.gender}</td>
-              <td onClick="#">Edit</td>
-              <td onClick="#">Delete</td>
+              <td onClick={props.onEdit}>Edit</td>
+              <td onClick={deleteUser.bind(null, val.id)}>Delete</td>
             </tr>
           );
         })}
