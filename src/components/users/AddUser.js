@@ -1,6 +1,7 @@
 import React from "react";
 import useInput from "../hooks/use-input";
 import Modal from "../UI/Modal";
+import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
   const isEmpty = (value) => value.trim() !== "";
