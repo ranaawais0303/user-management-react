@@ -4,9 +4,9 @@ import AddUser from "./components/users/AddUser";
 import { useState } from "react";
 import EditUser from "./components/users/EditUser";
 const data = [
-  { id: "1", name: "Anom", position: "Junior SE", email: "rana@3" },
-  { id: "2", name: "Megha", position: "Junior SE", email: "ahmad@4" },
-  { id: "3", name: "Subham", position: "Junior SE", email: "shahzad@3" },
+  { id: "1", name: "Sarmad", position: "Junior SE", email: "rana@3" },
+  { id: "2", name: "Qamar", position: "Junior SE", email: "qamar@4" },
+  { id: "3", name: "Awais", position: "Junior SE", email: "awais@3" },
 ];
 function App() {
   const [users, setUsers] = useState(data);
