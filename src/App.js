@@ -2,6 +2,7 @@ import UsersList from "./components/users/UsersList";
 import Header from "./components/Header/Header";
 import AddUser from "./components/users/AddUser";
 import { useState } from "react";
+import EditUser from "./components/users/EditUser";
 const data = [
   { id: "1", name: "Anom", position: "Junior SE", email: "rana@3" },
   { id: "2", name: "Megha", position: "Junior SE", email: "ahmad@4" },
@@ -38,10 +39,14 @@ function App() {
     console.log(fname, lname, email);
     setShowForm(false);
   };
-  function editHandler(id) {
-    console.log("edit function");
-  }
-
+  // const editUserHandler = (index, user) => {
+  //   const newUsers = [...users];
+  //   newUsers[index].name = user[index].name;
+  //   newUsers[index].position = user[index].position;
+  //   newUsers[index].email = user[index].email;
+  //   return newUsers;
+  // };
+  ///////////////////////
   return (
     <div className="container">
       {/* <div className="app">User Management</div> */}
@@ -54,7 +59,7 @@ function App() {
           onAddUser={addUserHandler}
         />
       )}
-      <UsersList data={users} onDel={deleteHandler} onEdit={editHandler} />
+      <UsersList data={users} onDel={deleteHandler} />
     </div>
   );
 }
