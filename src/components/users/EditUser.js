@@ -24,7 +24,7 @@ const EditUser = (props) => {
     reset: nameReset,
   } = useInput(isEmpty);
 
-  //for
+  //for position
   const {
     value: position,
     isValid: positionIsValid,
@@ -48,6 +48,8 @@ const EditUser = (props) => {
   if (nameIsValid && positionIsValid && emailIsValid) {
     formIsValid = true;
   }
+
+  //form Handler
   const formSubmissionHandler = (e) => {
     e.preventDefault();
     if (!formIsValid) {

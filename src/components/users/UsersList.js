@@ -7,7 +7,6 @@ let myuser;
 let myIndex;
 const UsersList = (props) => {
   const [showEdit, setShowEdit] = useState(false);
-  const [users, setUsers] = useState(props.data);
   function deleteUser(id) {
     props.onDel(id);
   }
@@ -16,20 +15,16 @@ const UsersList = (props) => {
   function editUser(index) {
     setShowEdit(true);
     myIndex = index;
-    myuser = users[myIndex];
+    myuser = props.data[myIndex];
     console.log(myuser);
   }
   const hideForm = () => {
     setShowEdit(false);
   };
 
-  ///////////////change state according to edit value/update
+  ///////////////send user to app.js which receive from edit user
   const editUserHandler = (user) => {
-    const newUsers = users;
-    newUsers[myIndex].name = user.name;
-    newUsers[myIndex].position = user.position;
-    newUsers[myIndex].email = user.email;
-    setUsers(newUsers);
+    props.onEdit(myIndex, user);
     setShowEdit(false);
   };
   return (

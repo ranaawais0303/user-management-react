@@ -11,19 +11,25 @@ const data = [
 function App() {
   const [users, setUsers] = useState(data);
   const [showform, setShowForm] = useState(false);
+
+  ////////////hide Modal
   function hideUserModelHandler() {
     setShowForm(false);
   }
+  ////////////hide Modal
   function showUserModelHandler() {
     setShowForm(true);
   }
 
+  /////////Delete User Handler////////////////////
   function deleteHandler(id) {
     setUsers((prevUsers) => {
       const updatedUsers = prevUsers.filter((user) => user.id !== id);
       return updatedUsers;
     });
   }
+
+  ///Add User Handler/////////////////////////
   const addUserHandler = (fname, lname, email) => {
     setUsers((prevUsersList) => {
       return [
@@ -39,13 +45,15 @@ function App() {
     console.log(fname, lname, email);
     setShowForm(false);
   };
-  // const editUserHandler = (index, user) => {
-  //   const newUsers = [...users];
-  //   newUsers[index].name = user[index].name;
-  //   newUsers[index].position = user[index].position;
-  //   newUsers[index].email = user[index].email;
-  //   return newUsers;
-  // };
+
+  ///////////////////////Edit User Handler///////////////////////
+  const editUserHandler = (index, user) => {
+    const newUsers = users;
+    newUsers[index].name = user.name;
+    newUsers[index].position = user.position;
+    newUsers[index].email = user.email;
+    setUsers(newUsers);
+  };
   ///////////////////////
   return (
     <div className="container">
@@ -59,7 +67,7 @@ function App() {
           onAddUser={addUserHandler}
         />
       )}
-      <UsersList data={users} onDel={deleteHandler} />
+      <UsersList data={users} onDel={deleteHandler} onEdit={editUserHandler} />
     </div>
   );
 }
