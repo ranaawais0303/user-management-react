@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useInput from "../hooks/use-input";
+import UserContext from "../store/user-context";
 import Modal from "../UI/Modal";
 
 const EditUser = (props) => {
+  const userContext = useContext(UserContext);
   useEffect(() => {
     const event = { target: { value: props.user.name } };
     nameChangeHandler(event);
@@ -62,8 +64,9 @@ const EditUser = (props) => {
 
   ///Edit user Handler where set user value according to input change value
   const editHandler = () => {
-    const users = { name: name, position: position, email: emailValue };
-    props.onEditUser(users);
+    const user = { name: name, position: position, email: emailValue };
+    props.onEditUser(user);
+    console.log(user);
   };
 
   //set style according to conditions

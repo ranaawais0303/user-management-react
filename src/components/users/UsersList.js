@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Card from "../UI/Card";
 import EditUser from "./EditUser";
 import User from "./User";
+import UserContext from "../store/user-context";
 import classes from "./UsersList.module.css";
 let myuser;
 let myIndex;
 const UsersList = (props) => {
+  const userCtx = useContext(UserContext);
+
   const [showEdit, setShowEdit] = useState(false);
   function deleteUser(id) {
-    props.onDel(id);
+    userCtx.removeUser(id);
   }
 
   //set index and send that index user to edit user
   function editUser(index) {
     setShowEdit(true);
     myIndex = index;
-    myuser = props.data[myIndex];
-    console.log(myuser);
+    myuser = userCtx.usersList[myIndex];
   }
   const hideForm = () => {
     setShowEdit(false);
@@ -24,7 +26,7 @@ const UsersList = (props) => {
 
   ///////////////send user to app.js which receive from edit user
   const editUserHandler = (user) => {
-    props.onEdit(myIndex, user);
+    userCtx.editUser(myIndex, user);
     setShowEdit(false);
   };
   return (
@@ -37,7 +39,7 @@ const UsersList = (props) => {
             <th>Email</th>
             <th colSpan={2}>Actions</th>
           </tr>
-          {props.data.map((val, index) => {
+          {userCtx.usersList.map((val, index) => {
             return (
               <User
                 key={val.id}
@@ -53,7 +55,6 @@ const UsersList = (props) => {
             <EditUser
               onClose={hideForm}
               user={myuser}
-              onEdit={editUser}
               onEditUser={editUserHandler}
             />
           )}

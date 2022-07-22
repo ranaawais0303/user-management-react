@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import useInput from "../hooks/use-input";
 import Modal from "../UI/Modal";
+import UserContext from "../store/user-context";
 import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
+  const userContext = useContext(UserContext);
   const isEmpty = (value) => value.trim() !== "";
   const isEmail = (value) => value.includes("@");
   //for first name
@@ -41,14 +43,18 @@ const AddUser = (props) => {
     formIsValid = true;
   }
   const formSubmissionHandler = (e) => {
+    const users = { name: name, position: position, email: emailValue };
+    console.log(users);
     e.preventDefault();
     if (!formIsValid) {
       return;
     }
-    props.onAddUser(name, position, emailValue);
+    userContext.addUser(users);
+
     nameReset();
     positionReset();
     emailReset();
+    props.onClose();
   };
   //set style according to conditions
   const fnameInputClasses = nameHasError
