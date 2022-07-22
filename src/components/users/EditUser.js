@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import useInput from "../hooks/use-input";
-import UserContext from "../store/user-context";
 import Modal from "../UI/Modal";
 
 const EditUser = (props) => {
-  const userContext = useContext(UserContext);
+  ///////////////for update input //////////////////
   useEffect(() => {
     const event = { target: { value: props.user.name } };
     nameChangeHandler(event);
@@ -13,6 +12,8 @@ const EditUser = (props) => {
     event.target.value = props.user.email;
     emailChangeHandler(event);
   }, []);
+
+  //////////////////////Conditions/////////////////
   const isEmpty = (value) => value.trim() !== "";
   const isEmail = (value) => value.includes("@");
 
@@ -66,7 +67,6 @@ const EditUser = (props) => {
   const editHandler = () => {
     const user = { name: name, position: position, email: emailValue };
     props.onEditUser(user);
-    console.log(user);
   };
 
   //set style according to conditions

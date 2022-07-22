@@ -42,13 +42,15 @@ const AddUser = (props) => {
   if (nameIsValid && positionIsValid && emailIsValid) {
     formIsValid = true;
   }
+
+  /////////////////////form Handler////////////////////
   const formSubmissionHandler = (e) => {
     const users = { name: name, position: position, email: emailValue };
-    console.log(users);
     e.preventDefault();
     if (!formIsValid) {
       return;
     }
+    //Add user into context/////////////////
     userContext.addUser(users);
 
     nameReset();
@@ -75,7 +77,7 @@ const AddUser = (props) => {
             <label htmlFor="name">Name</label>
             <input
               type="text"
-              id="fname"
+              id="name"
               onChange={nameChangeHandler}
               onBlur={nameBlurHandler}
               value={name}
@@ -83,10 +85,10 @@ const AddUser = (props) => {
             {nameHasError && <p className="error-text">Name is not Valid</p>}
           </div>
           <div className={lnameInputClasses}>
-            <label htmlFor="name">Postion</label>
+            <label htmlFor="position">Postion</label>
             <input
               type="text"
-              id="lname"
+              id="position"
               onChange={positionChangeHandler}
               onBlur={postionBlurHandler}
               value={position}
@@ -97,7 +99,7 @@ const AddUser = (props) => {
           </div>
         </div>
         <div className={emailInputClasses}>
-          <label htmlFor="name">E-Mail Address</label>
+          <label htmlFor="email">E-Mail Address</label>
           <input
             type="email"
             id="email"

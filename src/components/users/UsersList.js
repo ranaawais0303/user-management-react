@@ -4,9 +4,11 @@ import EditUser from "./EditUser";
 import User from "./User";
 import UserContext from "../store/user-context";
 import classes from "./UsersList.module.css";
+
+/////////////////set user and index for update user.///
 let myuser;
 let myIndex;
-const UsersList = (props) => {
+const UsersList = () => {
   const userCtx = useContext(UserContext);
 
   const [showEdit, setShowEdit] = useState(false);
